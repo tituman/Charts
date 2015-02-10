@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Chart.js demo</title>
+        <!-- import plugin script -->
+        <script src='Chart.min.js'></script>
+		<script src='randoms.js'></script>
+    </head>
+    <body>
+	<h2>Linear Congruential</h2>
+        <canvas id="lincong" width="600" height="400"></canvas>
+	<h2>Additive Congruential</h2>
+        <canvas id="addcong" width="600" height="400"></canvas>
+	<h2>Von Neumann</h2>
+        <canvas id="vonneumann" width="600" height="400"></canvas>
+        <script>
+		Chart.defaults.global.animation = true;
+		Chart.defaults.global.showScale = false;
+		Chart.defaults.global.showTooltips = false;
+// linear congruential
+			var iterations = getIter();
+			var myLabels = [];
+			var myData = [];
+			for(i = 0; i < iterations; i++) {
+				myLabels[i] = linCongNext(0);
+				myData[i] = linCongNext(0);
+			}
+			
+            var lincongData = {
+                labels : myLabels, 
+                datasets : [
+                {
+                    fillColor : "rgba(0,0,0,0)",
+                    strokeColor : "rgba(0,0,0,0)",
+                    pointColor : "rgba(0,0,0,0)",
+                    pointStrokeColor : "#000",
+                    data : myData
+                }
+            ]
+            }
+            // get line chart canvas
+            var lincong = document.getElementById('lincong').getContext('2d');
+            // draw line chart
+            new Chart(lincong).Line(lincongData,{		
+				//Boolean - Whether grid lines are shown across the chart
+				scaleShowGridLines : false,
+				//Number - Radius of each point dot in pixels
+				pointDotRadius : 1
+			});
+// additive congruential
+
+			for(i = 0; i < iterations; i++) {
+				myLabels[i] = addCongNext(0);
+				myData[i] = addCongNext(0);
+			}
+			addcongData = {
+                labels : myLabels, 
+                datasets : [
+					{
+						fillColor : "rgba(0,0,0,0)",
+						strokeColor : "rgba(0,0,0,0)",
+						pointColor : "rgba(0,0,0,0)",
+						pointStrokeColor : "#000",
+						data : myData
+					}
+				]
+            }
+            // get line chart canvas
+            var addcong = document.getElementById('addcong').getContext('2d');
+            // draw line chart
+            new Chart(addcong).Line(addcongData,{		
+				//Boolean - Whether grid lines are shown across the chart
+				scaleShowGridLines : false,
+				//Number - Radius of each point dot in pixels
+				pointDotRadius : 1
+			}
+
+			);
+			
+// von neumann
+
+			for(i = 0; i < iterations; i++) {
+				myLabels[i] = addCongNext(0);
+				myData[i] = addCongNext(0);
+			}
+			addcongData = {
+                labels : myLabels, 
+                datasets : [
+					{
+						fillColor : "rgba(0,0,0,0)",
+						strokeColor : "rgba(0,0,0,0)",
+						pointColor : "rgba(0,0,0,0)",
+						pointStrokeColor : "#000",
+						data : myData
+					}
+				]
+            }
+            // get line chart canvas
+            var addcong = document.getElementById('addcong').getContext('2d');
+            // draw line chart
+            new Chart(addcong).Line(addcongData,{		
+				//Boolean - Whether grid lines are shown across the chart
+				scaleShowGridLines : false,
+				//Number - Radius of each point dot in pixels
+				pointDotRadius : 1
+			}
+
+			);
+            
+        </script>
+    </body>
+</html>
