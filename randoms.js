@@ -3,7 +3,6 @@ function getIter(){
 }
 /*
 linear congruential
-
 */
 var a = 11;
 var c = 37;
